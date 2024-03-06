@@ -21,7 +21,7 @@ raw_data <- map(
   ~read_clean(raw_data,
               skip = 10,
               sheet = .)
-                   ) |>
+) |>
   bind_rows() |>
   clean_names()
 
@@ -59,7 +59,7 @@ raw_data <- raw_data |>
          locality = ifelse(grepl("P.tange", locality),
                            "Pétange",
                            locality)
-         ) |>
+  ) |>
   mutate(across(starts_with("average"), as.numeric))
 
 # Check if missing data
@@ -73,8 +73,8 @@ raw_data <- raw_data |>
 
 #Keep commune level data
 commune_level_data <- raw_data |>
-    filter(!grepl("nationale|offres", locality),
-           !is.na(locality))
+  filter(!grepl("nationale|offres", locality),
+         !is.na(locality))
 
 # Keep country level data
 country_level <- raw_data |>
